@@ -18,8 +18,5 @@ export class ShoppingListComponent implements OnInit {
         return this.ingredients = ingredients;
       }
     )
-  };
-  
-
-  
+  }; 
 }
