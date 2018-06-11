@@ -16,8 +16,12 @@ private recipes: Recipe[] = [
   new Recipe('Big Smokey Burger', 'Burger', 'https://images.media-allrecipes.com/userphotos/720x405/1128661.jpg',[new Ingredient('ground beef sirloin', 2), new Ingredient('liquid smoke flavoring', 1), new Ingredient('hamburger buns', 6)]) 
 ];
 
-getRecipe(){
+getRecipes(){
   return this.recipes.slice();
+}
+
+getRecipe(id: number){
+  return this.recipes[id];
 }
 
 addIngredientToShoppingList(ingredients: Ingredient[]){
