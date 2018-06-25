@@ -1,4 +1,6 @@
+import { HttpRequestsService } from './../shared/http-requests.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -7,13 +9,32 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() featureSelected = new EventEmitter<string>();
-  constructor() { }
+  constructor(private httpService: HttpRequestsService) { }
 
   ngOnInit() {
   }
 
-  onSelect(feature: string){
-    this.featureSelected.emit(feature);
+onSave() {
+  forkJoin(
+    this.httpService.storeRecipes(),
+    this.httpService.storeIngredients()
+  )
+  .subscribe(
+    ([response1, response2]) => {
+      console.log(response1);
+      console.log(response2);
+    },
+    ([error1, error2]) => {
+      console.log(error1);
+      console.log(error2)
+    }
+  )
+}
+
+
+  onFetch() {
+    this.httpService.getRecipes();
+    this.httpService.getIngredients();
   }
+
 }

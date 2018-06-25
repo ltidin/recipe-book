@@ -1,3 +1,5 @@
+import { HttpRequestsService } from './shared/http-requests.service';
+import {  HttpModule } from '@angular/http';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DropdownDirective } from './shared/dropdown.directive';
@@ -35,9 +37,10 @@ import { RecipeService } from './recipes/recipe.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, HttpRequestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
