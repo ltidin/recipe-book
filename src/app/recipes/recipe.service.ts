@@ -1,24 +1,44 @@
+import { Subject } from 'rxjs';
+import { ShoppingListService } from './../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Ingredient } from '../shared/ingredient.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
+recipesChanged = new Subject<Recipe[]>();
 
-recipeSelected = new EventEmitter<Recipe>();
-
-constructor() { }
+constructor(private shoppingListService: ShoppingListService) { }
 private recipes: Recipe[] = [
-  new Recipe('burger', 'tasty'), 
-  new Recipe(),
-  new Recipe(),
-  new Recipe(),
-  new Recipe(),
+  new Recipe('Ziti', 'Italian baked ziti', 'https://images.media-allrecipes.com/userphotos/720x405/4557541.jpg',[new Ingredient('dry ziti pasta', 1), new Ingredient('mozzarella cheese, shredded', 6), new Ingredient('sour cream', 2)]),
+  new Recipe('Big Smokey Burger', 'Burger', 'https://images.media-allrecipes.com/userphotos/720x405/1128661.jpg',[new Ingredient('ground beef sirloin', 2), new Ingredient('liquid smoke flavoring', 1), new Ingredient('hamburger buns', 6)])
 ];
 
-getRecipe(){
+getRecipes(){
   return this.recipes.slice();
 }
 
+getRecipe(id: number){
+  return this.recipes[id];
 }
+
+addIngredientToShoppingList(ingredients: Ingredient[]){
+    this.shoppingListService.addIngredients(ingredients);
+  }
+
+addRecipe(recipe: Recipe) {
+  this.recipes.push(recipe);
+  this.recipesChanged.next(this.recipes.slice());
+}
+updateRecipe(index: number, newRecipe: Recipe) {
+  this.recipes[index] = newRecipe;
+  this.recipesChanged.next(this.recipes.slice());
+}
+deleteRecipe(index: number) {
+  this.recipes.splice(index, 1);
+  this.recipesChanged.next(this.recipes.slice());
+}
+}
+

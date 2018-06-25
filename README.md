@@ -1,6 +1,10 @@
 # RecipeBook
 
+<<<<<<< HEAD
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+=======
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+>>>>>>> 67856705046967cb1225201861144355d770f19c
 
 ## Development server
 
