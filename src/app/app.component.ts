@@ -12,10 +12,10 @@ export class AppComponent implements OnInit {
     firebase.initializeApp({
       apiKey: 'AIzaSyCkZHKfRYxGrhOntqdewzITMWIUs9KcHW8',
       authDomain: 'ng-recipe-book-e1194.firebaseapp.com',
-      databaseURL: "https://ng-recipe-book-e1194.firebaseio.com",
-      projectId: "ng-recipe-book-e1194",
-      storageBucket: "ng-recipe-book-e1194.appspot.com",
-      messagingSenderId: "830654067058"
+      databaseURL: 'https://ng-recipe-book-e1194.firebaseio.com',
+      projectId: 'ng-recipe-book-e1194',
+      storageBucket: 'ng-recipe-book-e1194.appspot.com',
+      messagingSenderId: '830654067058'
     });
   }
 

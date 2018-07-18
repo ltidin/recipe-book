@@ -3,18 +3,19 @@ import { ShoppingListService } from './../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model';
 import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { HttpRequestsService } from '../shared/http-requests.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class RecipeService {
 recipesChanged = new Subject<Recipe[]>();
 
 constructor(private shoppingListService: ShoppingListService) { }
 private recipes: Recipe[] = [];
 
-getRecipes(){
+getRecipes() {
   return this.recipes.slice();
 }
 
@@ -23,11 +24,11 @@ setRecipes(recipes: Recipe[]) {
   this.recipesChanged.next(this.recipes.slice());
 }
 
-getRecipe(id: number){
+getRecipe(id: number) {
   return this.recipes[id];
 }
 
-addIngredientToShoppingList(ingredients: Ingredient[]){
+addIngredientToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
   }
 

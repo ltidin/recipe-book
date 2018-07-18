@@ -1,5 +1,5 @@
-import { AuthService } from './../authentication/auth.service';
-import { HttpRequestsService } from './../shared/http-requests.service';
+import { AuthService } from './../../authentication/auth.service';
+import { HttpRequestsService } from './../../shared/http-requests.service';
 import { Component, OnInit} from '@angular/core';
 import { forkJoin } from 'rxjs';
 
@@ -28,9 +28,9 @@ onSave() {
     },
     ([error1, error2]) => {
       console.log(error1);
-      console.log(error2)
+      console.log(error2);
     }
-  )
+  );
 }
 
 
