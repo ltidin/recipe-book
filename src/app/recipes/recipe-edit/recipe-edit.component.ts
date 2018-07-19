@@ -1,5 +1,5 @@
-import { Recipe } from './../recipe.model';
-import { RecipeService } from './../recipe.service';
+import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';

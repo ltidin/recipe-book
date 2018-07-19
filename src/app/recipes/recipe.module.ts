@@ -1,4 +1,4 @@
-import { SharedModule } from './../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { RecipesItemComponent } from './recipes-list/recipes-item/recipes-item.component';
 import { RecipeRoutingModule } from './recipes-routing.module';
 import { CommonModule } from '@angular/common';

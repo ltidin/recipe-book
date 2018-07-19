@@ -1,5 +1,5 @@
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { AuthGuardService } from './../authentication/auth-guard.service';
+import { AuthGuardService } from '../authentication/auth-guard.service';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipesStartComponent } from './recipes-start/recipes-start.component';
 import { RecipesComponent } from './recipes.component';

@@ -1,39 +1,29 @@
-import { HttpRequestsService } from './../shared/http-requests.service';
-import { ShoppingListService } from './shopping-list.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpRequestsService } from '../shared/http-requests.service';
+import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromShoppingList from './store/shopping-list.reducers';
+import * as ShoppingListActions from './store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit, OnDestroy {
-  ingredients: Ingredient[];
-  private subscription: Subscription;
-  constructor(private shoppingListService: ShoppingListService,
-              private http: HttpRequestsService) {}
+export class ShoppingListComponent implements OnInit {
+  shoppingListState: Observable<{ ingredients: Ingredient[] }>;
+  constructor(private http: HttpRequestsService,
+              private store: Store<fromShoppingList.AppState>) {}
 
   ngOnInit() {
-    this.http.getIngredients();
-    this.ingredients = this.shoppingListService.getIngredients();
-    console.log('ingredients init');
-    this.subscription = this.shoppingListService.ingredientsChanged.subscribe(
-      (ingredients: Ingredient[]) => {
-        console.log('Ingredients added');
-        return this.ingredients = ingredients;
-      }
-    );
+    this.shoppingListState = this.store.select('shoppingList');
   }
 
   onEditItem(index: number) {
-    this.shoppingListService.startedEditing.next(index);
+    this.store.dispatch(new ShoppingListActions.StartEditing(index));
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
 
 }
