@@ -1,7 +1,10 @@
+import { Store } from '@ngrx/store';
 import { AuthService } from '../../authentication/auth.service';
 import { HttpRequestsService } from '../../shared/http-requests.service';
 import { Component, OnInit} from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
+import * as fromApp from '../../store/app.reducers';
+import * as fromAuth from '../../authentication/store/auth.reducers';
 
 
 @Component({
@@ -10,10 +13,15 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private httpService: HttpRequestsService,
-              private authService: AuthService) { }
+  authState: Observable<fromAuth.State>;
 
+  constructor(private httpService: HttpRequestsService,
+              private authService: AuthService,
+              private store: Store<fromApp.AppState>) { }
+  
+  
   ngOnInit() {
+    this.authState = this.store.select('auth');
   }
 
 // onSave() {

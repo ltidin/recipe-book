@@ -1,7 +1,7 @@
-import { AuthService } from './../../authentication/auth.service';
-import { HttpRequestsService } from './../../shared/http-requests.service';
-import { RecipeService } from './../recipe.service';
-import { Recipe } from './../recipe.model';
+import { AuthService } from '../../authentication/auth.service';
+import { HttpRequestsService } from '../../shared/http-requests.service';
+import { RecipeService } from '../recipe.service';
+import { Recipe } from '../recipe.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -31,7 +31,7 @@ export class RecipesListComponent implements OnInit, OnDestroy {
             this.recipes = recipes;
           }
         );
-    }else {
+    } else {
         this.router.navigate(['../signin'], {relativeTo: this.route});
       }
   }
@@ -40,7 +40,7 @@ export class RecipesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
